@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+
 import './App.css';
 
+import Table from './components/BasicTable';
+import { COLUMNS } from "../src/components/columns";
+import MOCK_DATA from "../src/components/MOCK_DATA.json";
+
 function App() {
+  
+  const renderRowSubComponent = ({ row }) => (
+    <span
+      style={{
+        fontSize: "10px",
+      }}
+    >
+      <h2>{JSON.stringify(row.original.email)}</h2>
+    </span>
+  );
+  
+    
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       <Table  COLUMNS={COLUMNS} MOCK_DATA={MOCK_DATA} renderRowSubComponent={renderRowSubComponent}/> 
+        
     </div>
   );
 }
