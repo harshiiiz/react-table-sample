@@ -1,7 +1,8 @@
 
 import './App.css';
+import { ChakraProvider } from '@chakra-ui/react'
 
-import Table from './components/BasicTable';
+import BasicTable from './components/BasicTable';
 import { COLUMNS } from "../src/components/columns";
 import MOCK_DATA from "../src/components/MOCK_DATA.json";
 
@@ -19,10 +20,10 @@ function App() {
   
     
   return (
-    <div className="App">
-       <Table  COLUMNS={COLUMNS} MOCK_DATA={MOCK_DATA} renderRowSubComponent={renderRowSubComponent}/> 
+    <ChakraProvider>
+       <  BasicTable  COLUMNS={COLUMNS} MOCK_DATA={MOCK_DATA} renderRowSubComponent={renderRowSubComponent}/> 
         
-    </div>
+       </ChakraProvider>
   );
 }
 

@@ -1,5 +1,4 @@
-
-
+import { BsChevronExpand, BsChevronContract  } from 'react-icons/bs';
 
 export const COLUMNS = [
   
@@ -33,7 +32,7 @@ export const COLUMNS = [
     id: 'expander', 
     Header: ({ getToggleAllRowsExpandedProps, isAllRowsExpanded }) => (
       <span {...getToggleAllRowsExpandedProps()}>
-        {isAllRowsExpanded ? '👇' : '👉'}
+        {isAllRowsExpanded ? <BsChevronContract/>   :<BsChevronExpand/> }
       </span>
     ),
     Cell: ({ row }) =>
@@ -48,7 +47,7 @@ export const COLUMNS = [
             // },
           })}
         >
-          {row.isExpanded ? '👇' : '👉'}
+          {row.isExpanded ? <BsChevronContract/>:<BsChevronExpand/> }
         </span>
       
   },

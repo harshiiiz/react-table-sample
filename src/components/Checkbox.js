@@ -1,6 +1,6 @@
 import React from "react";
-
-export const Checkbox = React.forwardRef(({ indeterminate, ...rest }, ref) => {
+import { Input } from '@chakra-ui/react'
+export const Checkboxx = React.forwardRef(({ indeterminate, ...rest }, ref) => {
   const defaultRef = React.useRef();
   const resolvedRef = ref || defaultRef;
 

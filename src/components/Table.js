@@ -7,7 +7,6 @@ import {
   useExpanded,
 } from "react-table";
 import { CSVLink } from "react-csv";
-
 import "./Table.css";
 import { GlobalFilter } from "./GlobalFilter";
 import { Checkbox } from "./Checkbox";
