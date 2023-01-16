@@ -15,7 +15,6 @@ import {
   Th,
   Td,
   TableContainer,
-  chakra,
   Select,
   Text,
   Box,
@@ -23,6 +22,7 @@ import {
   Center,
   color,
   Button,
+  Heading,
 } from "@chakra-ui/react";
 import { TbDownload, TbFilter } from "react-icons/tb";
 import "./Table.css";
@@ -30,15 +30,18 @@ import { GlobalFilter } from "./GlobalFilter";
 import { Checkboxx } from "./Checkbox";
 import { BsChevronExpand, BsChevronContract } from "react-icons/bs";
 import { TriangleDownIcon } from "@chakra-ui/icons";
+import Options from "./Options";
 
 const BasicTable = (props) => {
   const columns = useMemo(() => props.COLUMNS, []);
   const data = useMemo(() => props.MOCK_DATA, []);
   const [options, setOptions] = useState({
-    expandableRows: true,
+    headerResult: true,
     download: true,
     filter: true,
     pagination: true,
+    footerResult: true,
+    title: true,
   });
 
   const tableInstance = useTable(
@@ -46,9 +49,9 @@ const BasicTable = (props) => {
       columns,
       data,
       initialState: { pageIndex: 0, pageSize: 10 },
-      ...(options.filter && { useGlobalFilter }),
-      ...(options.pagination && { usePagination }),
-      ...options.download,
+      // ...(options.filter && { useGlobalFilter }),
+      // ...(options.pagination && { usePagination }),
+      // ...options.download,
 
       // ...(options.expandableRows && { useExpanded }),
     },
@@ -60,7 +63,6 @@ const BasicTable = (props) => {
       hooks.visibleColumns.push((columns) => {
         return [
           {
-            
             id: "selection",
             Header: ({ getToggleAllPageRowsSelectedProps }) => (
               <Checkboxx {...getToggleAllPageRowsSelectedProps()} />
@@ -105,57 +107,19 @@ const BasicTable = (props) => {
 
   return (
     <>
-      <div className="options">
-        <label>
-          <input
-            type="checkbox"
-            checked={options.expandableRows}
-            onChange={() =>
-              setOptions({
-                ...options,
-                expandableRows: !options.expandableRows,
-              })
-            }
-          />
-          Expandable Rows
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={options.download}
-            onChange={() =>
-              setOptions({
-                ...options,
-                download: !options.download,
-              })
-            }
-          />
-          Download
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={options.filter}
-            onChange={() => setOptions({ ...options, filter: !options.filter })}
-          />
-          Filter
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={options.pagination}
-            onChange={() =>
-              setOptions({ ...options, pagination: !options.pagination })
-            }
-          />
-          Pagination
-        </label>
-      </div>
+      <Options options={options} setOptions={setOptions} />
 
-      <TableContainer>
-        <Text fontFamily="Rubik" fontWeight={500} fontSize={"16px"}>
-          Preview
-        </Text>
+      <Heading
+        fontFamily="Rubik"
+        fontWeight={500}
+        fontSize={"16px"}
+        ml={"30px"}
+        mb="8px"
+        mt="48px"
+      >
+        Preview
+      </Heading>
+      <TableContainer bg={"#FFFFFF"}>
         <Box p={2}>
           <Flex direction={"row"} justifyContent={"space-between"} p={1.6}>
             <Flex
@@ -168,18 +132,21 @@ const BasicTable = (props) => {
                 size={24}
                 display={"flex"}
               />
-
-              <Text
-                fontSize="lg"
-                fontWeight={500}
-                fontFamily="Rubik"
-                color="#333333"
-              >
-                Sample Data
-              </Text>
-              <Text fontSize={"12px"} color="rgba(132, 148, 168, 0.87)">
-                {pageCount * pageSize} results
-              </Text>
+              {options.title && (
+                <Text
+                  fontSize="lg"
+                  fontWeight={500}
+                  fontFamily="Rubik"
+                  color="#333333"
+                >
+                  Sample Data
+                </Text>
+              )}
+              {options.headerResult && (
+                <Text fontSize={"12px"} color="rgba(132, 148, 168, 0.87)">
+                  {pageCount * pageSize} results
+                </Text>
+              )}
             </Flex>
 
             <Flex
@@ -271,10 +238,12 @@ const BasicTable = (props) => {
                 gap={"24px"}
                 alignItems={"center"}
               >
-                <Box color="#4F6683">
-                  Showing <strong>{page.length}</strong> out of{" "}
-                  <strong>{pageCount * pageSize} </strong> results
-                </Box>
+                {options.footerResult && (
+                  <Box color="#4F6683">
+                    Showing <strong>{page.length}</strong> out of{" "}
+                    <strong>{pageCount * pageSize} </strong> results
+                  </Box>
+                )}
 
                 <Flex color="#4F6683">
                   {" "}
