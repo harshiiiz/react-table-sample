@@ -143,7 +143,11 @@ const BasicTable = (props) => {
                 </Text>
               )}
               {options.headerResult && (
-                <Text fontSize={"12px"} color="rgba(132, 148, 168, 0.87)">
+                <Text
+                  fontSize={"12px"}
+                  color="rgba(132, 148, 168, 0.87)"
+                  fontFamily={"Rubik"}
+                >
                   {pageCount * pageSize} results
                 </Text>
               )}
@@ -186,6 +190,8 @@ const BasicTable = (props) => {
               <Tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
                   <Th
+                    fontFamily={"Rubik"}
+                    color="#4F6683"
                     fontSize={10}
                     m={0}
                     p={"0.6rem"}
@@ -239,13 +245,13 @@ const BasicTable = (props) => {
                 alignItems={"center"}
               >
                 {options.footerResult && (
-                  <Box color="#4F6683">
+                  <Box color="#4F6683" fontFamily={"Rubik"}>
                     Showing <strong>{page.length}</strong> out of{" "}
                     <strong>{pageCount * pageSize} </strong> results
                   </Box>
                 )}
 
-                <Flex color="#4F6683">
+                <Flex color="#4F6683" fontFamily={"Rubik"}>
                   {" "}
                   Show{" "}
                   <Select

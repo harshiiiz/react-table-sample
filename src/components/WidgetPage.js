@@ -32,6 +32,7 @@ const WidgetPage = (props) => {
         fontFamily={"Rubik"}
         fontSize={"14px"}
         fontWeight={"400"}
+        color= '#000000'
         mb={"48px"}
         ml={"16px"}
       >

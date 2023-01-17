@@ -27,7 +27,7 @@ const Options = ({ options, setOptions }) => {
         {" "}
         Configure
       </Heading>
-      <Flex flexDirection={"column"} bg={"#FFFFFF"} px={10} py="32px">
+      <Flex flexDirection={"column"} bg={"#FFFFFF"} px={10} py="32px" fontFamily={"Rubik"}>
         <Flex justifyContent={"space-between"} mb="66px">
           <Checkbox
             defaultChecked
@@ -42,7 +42,6 @@ const Options = ({ options, setOptions }) => {
             Show Title
           </Checkbox>
           <Checkbox
-            defaultChecked
             checked={options.expandableRows}
             onChange={() =>
               setOptions({
@@ -54,7 +53,6 @@ const Options = ({ options, setOptions }) => {
             Show Subtitle
           </Checkbox>
           <Checkbox
-            defaultChecked
             checked={options.expandableRows}
             onChange={() =>
               setOptions({
